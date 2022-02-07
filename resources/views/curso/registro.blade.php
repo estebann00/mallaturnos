@@ -30,11 +30,29 @@
                             <form method="post">
                             <div class="col-md-6">
                                 <h5 class="card-title" >PUNTO VENTA </h5> 
-                                <input id="txtpdv" type="search" class="form-control" name="" placeholder="Punto de Venta" readonly="">                                
+                                <table class="TFtable">
+                                <thead>
+                                   
+                                </thead>
+                                <tbody>
+                                @if ($consulta->count() == null)
+
+                                <tr>
+                                    <td colspan="8"> No hay registros</td>
+                                </tr>
+                                @else
+
+                                @foreach($consulta as $item)
+                                    <tr><input id="txtpdv" type="search" class="form-control" name="" value="{{ $item->pdv_nombre }} " placeholder="Punto de Venta" readonly="">                                           
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                @endif
+                                </tbody>
+                            </table>                             
                             </div>
+
                             </form>
-                    </div> 
-                    </form>
                 </div>
             </div>                     
         </div>
