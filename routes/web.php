@@ -16,5 +16,7 @@ use App\Http\Controllers\ConsultaController;
 
 Route::resource('/inicio', ConsultaController::class);
 
+Route::resource('/curso', ConsultaController::class);
+
 //Route::get('', [ConsultaController::class, 'index']);
 
