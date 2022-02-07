@@ -9,15 +9,15 @@ use Illuminate\Http\Request;
 class ConsultaController extends Controller
 {
     
-    public function index(Request $request)
-    {
-        $buscar=trim($request->get('texto'));
-        $consulta = DB::table('puntos_venta')
-                      
-                        ->select('pdv_ide','pdv_nombre')
-                        ->where('pdv_ide','LIKE',"%$buscar%")
-                        ->get();
-        return view('curso.registro', compact('consulta'));
+    
+        $texto =($request->get('texto')); 
+
+        $consulta=DB::table('puntos_venta')
+                    ->select('pdv_ide','pdv_nombre','pdv_direccion')
+                    ->where('pdv_ide', 'LIKE', '%'.$texto.'%')
+                    ->paginate(10);
+
+        return view('curso.registro', compact('consulta', 'texto'));
         //return view('curso.registro', compact('consulta'));
 
         //$buscador=$request()->get('buscador');
