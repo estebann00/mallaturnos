@@ -20,28 +20,23 @@
         </div>
             <div class="card-header">
                 <div class="form-group">
-                    <form action="{{route('inicio.index')}}" method="get">
+                    <form action="{{route('inicio.consultapdv')}}" method="get">
                     <div class="row justify-content-center">
                             <div class="col-md-2">
                                 <h5 class="card-title" >CODIGO </h5> 
-                                <input name="texto" class="form-control" type="text" placeholder="" id="">
+                                <input name="texto" class="form-control" type="text" placeholder="" value="{{$texto}}">
                                 <button id="button" class="btn btn-outline-success" type="submit">Buscar</button>
                             </div>
                             <form method="post">
                             <div class="col-md-6">
                                 <h5 class="card-title" >PUNTO VENTA </h5> 
                                 <table class="TFtable">
-                                <thead>
-                                   
-                                </thead>
                                 <tbody>
                                 @if ($consulta->count() == null)
-
                                 <tr>
                                     <td colspan="8"> No hay registros</td>
                                 </tr>
                                 @else
-
                                 @foreach($consulta as $item)
                                     <tr><input id="txtpdv" type="search" class="form-control" name="" value="{{ $item->pdv_nombre }} " placeholder="Punto de Venta" readonly="">                                           
                                         </td>
@@ -51,7 +46,33 @@
                                 </tbody>
                             </table>                             
                             </div>
-
+                            </form>
+                    <form action="{{route('inicio.consultaasc')}}" method="get">
+                    <div class="row justify-content-center">
+                            <div class="col-md-2">
+                                <h5 class="card-title" >CODIGO </h5> 
+                                <input name="texto" class="form-control" type="text" placeholder="" value="{{$textou}}">
+                                <button id="button" class="btn btn-outline-success" type="submit">Buscar</button>
+                            </div>
+                            <form method="post">
+                            <div class="col-md-6">
+                                <h5 class="card-title" >ASESOR COMERCIAL </h5> 
+                                <table class="TFtable">
+                                <tbody>
+                                @if ($consultau->count() == null)
+                                <tr>
+                                    <td colspan="8"> No hay registros</td>
+                                </tr>
+                                @else
+                                @foreach($consultau as $item)
+                                    <tr><input id="txtpdv" type="search" class="form-control" name="" value="{{ $item->asc_nombre, asc_apellido }} " placeholder="Punto de Venta" readonly="">                                           
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                @endif
+                                </tbody>
+                            </table>                             
+                            </div>
                             </form>
                 </div>
             </div>                     
