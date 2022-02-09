@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Consulta;
+use App\Models\puntodv;
+use App\Models\asesorcom;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -9,21 +10,32 @@ use Illuminate\Http\Request;
 class ConsultaController extends Controller
 {
     
-    
-        $texto =($request->get('texto')); 
-
-        $consulta=DB::table('puntos_venta')
-                    ->select('pdv_ide','pdv_nombre','pdv_direccion')
-                    ->where('pdv_ide', 'LIKE', '%'.$texto.'%')
-                    ->paginate(10);
-
-        return view('curso.registro', compact('consulta', 'texto'));
-        //return view('curso.registro', compact('consulta'));
-
-        //$buscador=$request()->get('buscador');
-        //$Consulta = consulta::where('pdv_ide', 'LIKE','%'. $buscador. '%');
-        //return view('/principal',['consulta'=>$Consulta,'buscador'=>$buscador]);
+    public function index()
+    {    
+        return view ('/welcome');
     }
+
+    public function consultapdv(Request $request)
+    {
+        
+        $texto =($request->get('texto'));
+        //$texto1 =($request->get('texto1'));        
+        $consulta=DB::table('puntos_venta')
+                    ->select('pdv_ide','pdv_nombre')
+                    ->where('pdv_ide', 'LIKE', '%'.$texto.'%')
+                    ->paginate(1);                   
+        return view('curso.registro', compact('consulta', 'texto'));      
+    }
+
+    public function consultaasc(Request $request)
+    {    
+    $textou =($request->get('textou'));
+        //$texto1 =($request->get('texto1'));        
+        $consultau=DB::table('asesores_comerciales')
+                    ->select('asc_ide','asc_nombre','asc_apellido')
+                    ->where('asc_ide', 'LIKE', '%'.$textou.'%')
+                    ->paginate(1);                   
+        return view('curso.registro', compact('consultau', 'textou'));      
+    }
+
 }
-
-
